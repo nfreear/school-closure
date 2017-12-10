@@ -1,0 +1,11 @@
+
+cache/
+vendor/
+.env
+.env.php
+composer.lock
+*BAK*
+
+index.json
+
+# End.

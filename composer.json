@@ -1,0 +1,28 @@
+{
+    "name": "nfreear/school-closure",
+    "description": "Extract / scrape data on school snow closures in a town.",
+    "time": "2017-11-12",
+    "license": "proprietary",
+    "authors": [ { "name": "Nick Freear" } ],
+    "support": {
+        "support": "https://github.com/nfreear#!-school-closure-scraper"
+    },
+    "require": {
+        "duzun/hquery": "1.7.1"
+    },
+    "require-dev": {
+        "jakub-onderka/php-parallel-lint": "^0.9.2"
+    },
+    "suggest": {
+        "shuber/curl": "^1.0",
+        "99designs/ergo-http": "^1.1.1",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "scripts": {
+        "copy-env": "cp -n .env.DIST.php .env",
+        "mk-cache": "mkdir cache",
+        "cron": "bin/school-closure.php",
+        "test": "php-parallel-lint --exclude=vendor ."
+    },
+    "extra": { }
+}
