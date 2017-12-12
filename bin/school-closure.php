@@ -10,7 +10,6 @@
 // Environment / configuration -- this will go in a ".env" file !!
 require_once __DIR__ . '/../.env.php';
 
-// Optionally use namespaces (PHP >= 5.3.0 only)
 use duzun\hQuery;
 
 // Set the cache path - must be a writable folder
@@ -33,20 +32,13 @@ try {
 
         $htmldoc = hQuery::fromFile( $scrape_url, false, $http_context );
 
-        /* $htmldoc = hQuery::fromUrl( $scrape_url, [
-            'Connection' => 'Keep-Alive',
-            'Accept' => 'text/html,application/xhtml+xml;q=0.9,*-/*;q=0.8',
-            'User-Agent' => USER_AGENT ]); */
-
         $headings = $htmldoc->find(getenv( 'SCX_LOOP_SELECTOR' ));
 
-        // var_dump( count( $headings ), $htmldoc->size, $htmldoc->charset );
+        _verbose([ count( $headings ), $htmldoc->size, $htmldoc->charset ]);
 
         if ($headings) {
 
             foreach ($headings as $idx => $heading) {
-                // print_r( $heading->text() . "\n" );
-
                 preg_match(getenv( 'SCX_ITEM_REGEX' ), $heading->text(), $matches );
 
                 $results[] = [

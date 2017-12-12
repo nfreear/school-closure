@@ -8,6 +8,7 @@
         "source": "https://github.com/nfreear/school-closure"
     },
     "require": {
+        "php": ">=5.5.9",
         "duzun/hquery": "1.7.1"
     },
     "require-dev": {
@@ -29,5 +30,6 @@
         ],
         "serve": "php -S localhost:8000"
     },
+    "keywords": [ "scraper", "school", "snow", "weather", "hQuery" ],
     "extra": { }
 }

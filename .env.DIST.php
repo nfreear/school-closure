@@ -28,11 +28,18 @@ define( 'INDEX_JSON', __DIR__ . '/index.json' );
 define( 'MIN_PAGE', getenv( 'SCX_MIN_PAGE' ));
 define( 'MAX_PAGE', getenv( 'SCX_MAX_PAGE' ));
 define( 'LANG', 'en-GB' );
+define( 'VERBOSE', $argv[ $argc - 1] === '-vvv' );
 
-// var_dump(getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ));
+_verbose([ getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ) ]);
 
-// Either use commposer, either include this file:
-# include_once '/path/to/libs/hquery.php';
+function _verbose( $obj ) {
+    if ( VERBOSE ) {
+        echo json_encode( $obj, JSON_PRETTY_PRINT ) . "\n";
+    }
+}
+
+// Either use commposer (or include this file):
+// include_once '/path/to/libs/hquery.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 // End.

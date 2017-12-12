@@ -26,17 +26,18 @@ composer serve
 
 I identify myself as the following `User-Agent` (and I sleep between requests):
 
-```
+```md
 SchoolClosure/1.0-beta +https://github.com/nfreear/school-closure#bot
 ```
 
-### Cron
+## Cron
 
 Example [crontab][] (assumes the server is configured for your local time):
 
-```crontab
-# min hr  dom mon day  command
-*/15  6-9 *   *   *    cd /path/to/school-closure; /usr/local/bin/composer cron
+```sh
+# crontab -l
+# min hr  dom mon day command
+*/15  6-9 *   *   *   cd /path/to/school-closure; /usr/local/bin/composer cron >/dev/null 2>&1
 ```
 
 ## Legal
@@ -47,12 +48,12 @@ Use at your own risk.
 I accept no liability for losses.
 
 ---
-© [Nick Freear][]. License: [MIT][].
+[code][gh]: © [Nick Freear][]. License: [MIT][].
 
 
 [Nick Freear]: https://twitter.com/nfreear
 [mit]: https://nfreear.mit-license.org/2017
-[hQuery]: https://github.com/duzun/hQuery.php
+[hQuery]: https://github.com/duzun/hQuery.php "duzun/hQuery.php"
 [gh]: https://github.com/nfreear/school-closure
 [travis]: https://travis-ci.org/nfreear/school-closure "Build status — Travis-CI"
 [travis-icon]: https://travis-ci.org/nfreear/school-closure.svg

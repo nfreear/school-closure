@@ -11,7 +11,10 @@ install: composer install && composer npm-install
 
 before_script: composer copy-env && composer mk-cache
 
-script: composer test && composer cron
+script:
+  - composer validate
+  - composer test
+  - composer cron
 
 after_script: git status && cat index.json
 
