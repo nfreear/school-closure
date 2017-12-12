@@ -1,8 +1,12 @@
 
-.school-closure-js a {
+.school-closure-js {
     background: #fff;
     color: #333;
     font: 1.05rem sans-serif;
+}
+
+.school-closure-js a {
+    color: #333;
     text-decoration: underline;
 }
 
@@ -20,4 +24,8 @@
 
 .school-closure-js.open b {
     color: #4c1; /* green */
+}
+
+.school-closure-js.error-not-found {
+    color: darkorange;
 }
