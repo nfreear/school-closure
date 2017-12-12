@@ -8,16 +8,14 @@ window.jQuery(function ($) {
   var $widget = $('#school-closure');
   var $conf = $('div[ data-school-closure ]');
   var config = $conf.data('schoolClosure');
-  var query = window.location.search;
-  var m_search = query.match(/\?s=([\w%]+)/);
+  var mSearch = window.location.search.match(/\?s=([\w%]+)/);
 
-  config.m_search = m_search;
-  config.name = config.name || m_search ? decodeURIComponent(m_search[ 1 ]) : null;
+  config.m_search = mSearch;
+  config.name = config.name || mSearch ? decodeURIComponent(mSearch[ 1 ]) : null;
   config.tpl = '<a title="Last updated: %t" href="%u"><i>%s </i><b>%oc</b></a>';
   config.url = config.url || './../index.json';
 
   console.warn('Config:', config, $conf);
-  $widget.addClass('school-closure-js');
 
   $.getJSON(config.url).done(function (data) {
     console.warn('JSON:', data);
@@ -37,4 +35,6 @@ window.jQuery(function ($) {
 
     $widget.html('Not found: ' + config.name).addClass('error-not-found');
   });
+
+  $widget.addClass('school-closure-js');
 });

@@ -27,7 +27,9 @@ try {
 
         // GET the document.
         $http_context = stream_context_create([ 'http' => [
-            'method' => 'GET', 'user_agent' => AGENT, 'proxy' => PROXY, 'header' => [] ]]);
+            'method' => 'GET', 'user_agent' => AGENT, 'proxy' => PROXY, 'header' => [
+                'X-sleep-seconds: ' . getenv( 'SCX_SLEEP_FLOAT' ),
+        ] ] ]);
 
         $htmldoc = hQuery::fromFile( $scrape_url, false, $http_context );
 
@@ -67,7 +69,8 @@ $data = [
     'home_url' => getenv( 'SCX_LINK_URL' ),
     'legal'    => LEGAL,
     'user_agent' => AGENT,
-    'pages'   => MAX_PAGE,
+    'sleep_secs' => (float) getenv( 'SCX_SLEEP_FLOAT' ),
+    'pages'   => (int) MAX_PAGE,
     'count'   => count( $results ),
     'schools' => $results,
 ];

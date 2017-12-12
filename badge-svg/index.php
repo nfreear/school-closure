@@ -2,6 +2,7 @@
 /**
  *
  * @link  https://img.shields.io/badge/Middleton_Primary-closed-red.svg
+ * @link  https://img.shields.io/badge/Middleton_Primaryx-closed-brightgreen.svg
  */
 
 define( 'INDEX_JSON', __DIR__ . '/../index.json' );
