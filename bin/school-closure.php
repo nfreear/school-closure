@@ -50,7 +50,7 @@ try {
                 preg_match(getenv( 'SCX_ITEM_REGEX' ), $heading->text(), $matches );
 
                 $results[] = [
-                    'name'   => trim($matches[ 'school' ]),
+                    'name'   => preg_replace( '/ {2,}/', ' ', trim($matches[ 'school' ])),
                     'status' => strtolower($matches[ 'status' ]),
                     'page'   => (int) $page,
                 ];
@@ -64,6 +64,7 @@ try {
 }
 
 $data = [
+    'lang'     => LANG,
     'build_time' => date( 'c' ),
     'location' => getenv( 'SCX_LOCATION' ),
     'home_url' => getenv( 'SCX_LINK_URL' ),
