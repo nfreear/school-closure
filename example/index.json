@@ -1,0 +1,74 @@
+{
+    "lang": "en-GB",
+    "build_time": "2017-12-12T21:08:16+01:00",
+    "location": "Milton Keynes, England",
+    "home_url": "https:\/\/www.milton-keynes.gov.uk\/closures",
+    "legal": "This data remains the property of the website publisher. Use at your own risk. We accept no liability for losses.",
+    "user_agent": "SchoolClosure\/1.0-beta +https:\/\/github.com\/nfreear\/school-closure#bot",
+    "sleep_secs": 1.5,
+    "pages": 8,
+    "count": 80,
+    "schools": [
+        {
+          "name": "Abbeys Primary",
+          "status": "open",
+           "page": 1
+        },
+        {
+          "name": "Art Room Children's Centre, The",
+          "status": "open",
+          "page": 1
+        },
+        {
+            "name": "Ashbrook",
+            "status": "open",
+            "page": 1
+        },
+        {
+            "name": "Barleyhurst Park Primary",
+            "status": "open",
+            "page": 1
+        },
+
+
+        {
+            "name": "Bridge Academy West",
+            "status": "open",
+            "page": 2
+        },
+        {
+            "name": "Brooklands Farm Primary",
+            "status": "open",
+            "page": 2
+        },
+
+
+        {
+            "name": "Loughton Manor First",
+            "status": "open",
+            "page": 8
+        },
+        {
+            "name": "Meadfurlong",
+            "status": "open",
+            "page": 8
+        },
+        {
+            "name": "Merebrook Infant",
+            "status": "open",
+            "page": 8
+        },
+        {
+            "name": "Middleton Primary",
+            "status": "open",
+            "page": 8
+        },
+
+        {
+            "name": "Milton Keynes Music Service",
+            "status": "open",
+            "page": 8
+        }
+
+    ]
+}

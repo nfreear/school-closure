@@ -5,8 +5,11 @@
  * @link  https://img.shields.io/badge/Middleton_Primaryx-closed-brightgreen.svg
  */
 
-define( 'INDEX_JSON', __DIR__ . '/../index.json' );
 define( 'SCHOOL', filter_input( INPUT_GET, 's' ));
+define( 'INDEX_JSON', __DIR__ . '/../index.json' );
+define( 'CL_GREEN', '#4c1' );
+define( 'CL_RED',  '#e05d44' );
+define( 'CL_GREY', '#999' );
 
 $data = json_decode(file_get_contents( INDEX_JSON ));
 
@@ -15,19 +18,19 @@ header( 'X-1-index-json: count=' . count( $data->schools ));
 
 foreach ($data->schools as $idx => $school) {
     if ($school->name === SCHOOL) {
-        echo badge_svg($school->name, $school->status, $data->build_time);
+        echo badge_svg( $school->name, $school->status, $data->build_time );
         return;
     }
 }
 
-echo badge_svg('Not found', '404');
+echo badge_svg( 'Not found', '404' );
 
 // ---------------------------------------------------------------------
 
-function badge_svg($name = 'Middleton Primary', $stat = 'closed', $time = null) {
+function badge_svg( $name = 'Middleton Primary', $stat = 'closed', $time = null ) {
     header( 'Content-Type: image/svg+xml; charset=utf-8' );
 
-    $color = 'closed' == $stat ? '#e05d44' : 'open' == $stat ? '#4c1' : '#888';
+    $color = 'closed' == $stat ? CL_RED : 'open' == $stat ? CL_GREEN : CL_GREY;
 
     return <<<EOT
 <svg
