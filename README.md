@@ -20,6 +20,7 @@ composer test
 composer serve
   # And browse to ...
   # http://localhost:8000/badge-svg/?s=Middleton%20Primary
+  # http://localhost:8000/badge-svg/?abbr=MP
 ```
 
 ## Robot
@@ -54,7 +55,7 @@ I accept no liability for losses.
 
 
 [Nick Freear]: https://twitter.com/nfreear
-[mit]: https://nfreear.mit-license.org/2017
+[mit]: https://nfreear.mit-license.org/2017 "Open source license: MIT"
 [hQuery]: https://github.com/duzun/hQuery.php "duzun/hQuery.php"
 [gh]: https://github.com/nfreear/school-closure
 [travis]: https://travis-ci.org/nfreear/school-closure "Build status — Travis-CI"

@@ -2,7 +2,8 @@
 <?php
 
 /**
- * Loop through the collection of pages (scrape, extract, sleep), then output an "index.json" file.
+ * CLI. Loop through the collection of pages (scrape, extract, sleep).
+ *      Then output the "index.json" file.
  *
  * @copyright © Nick Freear, 10-December-2017.
  * @license   MIT
@@ -13,7 +14,7 @@ require_once __DIR__ . '/../.env.php';
 
 use duzun\hQuery;
 
-// Set the cache path - must be a writable folder
+// Set the cache path - must be a writable folder.
 hQuery::$cache_path = getenv( 'SCX_CACHE_DIR' );
 
 $results = [];
