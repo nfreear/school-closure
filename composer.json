@@ -19,7 +19,7 @@
         "vlucas/phpdotenv": "^2.4"
     },
     "scripts": {
-        "copy-env": "cp -n .env.DIST.php .env",
+        "copy-env": "cp -n .env.DIST.php .env.php",
         "mk-cache": "mkdir cache",
         "cron": "bin/school-closure.php",
         "test": "php-parallel-lint --exclude=vendor ."
