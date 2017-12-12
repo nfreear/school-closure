@@ -4,7 +4,8 @@
 /**
  * Loop through the collection of pages (scrape, extract, sleep), then output an "index.json" file.
  *
- * @copyright Nick Freear, 10-December-2017.
+ * @copyright © Nick Freear, 10-December-2017.
+ * @license   MIT
  */
 
 // Environment / configuration -- this will go in a ".env" file !!
@@ -42,7 +43,8 @@ try {
                 preg_match(getenv( 'SCX_ITEM_REGEX' ), $heading->text(), $matches );
 
                 $results[] = [
-                    'name'   => preg_replace( '/ {2,}/', ' ', trim($matches[ 'school' ])),
+                    'name'   => _clean($matches[ 'school' ]),
+                    'abbr'   => _abbreviate($matches[ 'school' ]),
                     'status' => strtolower($matches[ 'status' ]),
                     'page'   => (int) $page,
                 ];
@@ -71,5 +73,24 @@ $data = [
 $bytes = file_put_contents( INDEX_JSON, json_encode( $data, JSON_PRETTY_PRINT ));
 
 echo "\nindex.json. Bytes written: $bytes\n";
+
+
+// ------------------------------------------------------------
+
+// https://stackoverflow.com/questions/9706429/get-first-letter-of-each-word
+function _abbreviate( $text ) {
+    $text = trim(str_replace( 'The', '', _clean( $text )));
+    $words = explode(' ', $text); // "Community College District"
+    $acronym = '';
+
+    foreach ($words as $wd) {
+        $acronym .= $wd[ 0 ];
+    }
+    return count( $words ) > 1 ? $acronym : $text;
+}
+
+function _clean( $text ) {
+    return preg_replace( '/ {2,}/', ' ', trim( $text ));
+}
 
 // End.

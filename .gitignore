@@ -8,6 +8,7 @@ vendor/
 composer.lock
 package-lock.json
 *BAK*
+*.svg
 
 /index.json
 

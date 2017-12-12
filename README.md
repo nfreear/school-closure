@@ -6,6 +6,8 @@
 A PHP script to extract / scrape data on school snow closures in a town.
 Built on [hQuery][].
 
+Also, a `badge-svg` PHP script & a `school-closure` Javascript.
+
  * Example data: [index.json][]
 
 ## Install .. test
@@ -58,7 +60,7 @@ I accept no liability for losses.
 [travis]: https://travis-ci.org/nfreear/school-closure "Build status — Travis-CI"
 [travis-icon]: https://travis-ci.org/nfreear/school-closure.svg
 [index.json]: http://iet-embed-acct.open.ac.uk/dev/school-closure/index.json
-[badge]: http://iet-embed-acct.open.ac.uk/dev/school-closure/badge-svg/?s=Middleton%20Primary
+[badge]: http://iet-embed-acct.open.ac.uk/dev/school-closure/badge-svg/?abbr=MP
 [stat]: https://www.milton-keynes.gov.uk/closures?page=8#results
   "School closures - Milton Keynes"
 

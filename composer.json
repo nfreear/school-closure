@@ -9,7 +9,7 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "duzun/hquery": "1.7.1"
+        "duzun/hquery": "^1.7.1"
     },
     "require-dev": {
         "jakub-onderka/php-parallel-lint": "^0.9.2"

@@ -1,5 +1,5 @@
 /*!
-  © NDF, 12-dec-2017.
+  school-closure JS | © Nick Freear | MIT.
 */
 
 window.jQuery(function ($) {
@@ -11,7 +11,7 @@ window.jQuery(function ($) {
   var mSearch = window.location.search.match(/\?s=([\w%]+)/);
 
   config.m_search = mSearch;
-  config.name = config.name || mSearch ? decodeURIComponent(mSearch[ 1 ]) : null;
+  config.name = config.name || (mSearch ? decodeURIComponent(mSearch[ 1 ]) : null);
   config.tpl = '<a title="Last updated: %t" href="%u"><i>%s </i><b>%oc</b></a>';
   config.url = config.url || './../index.json';
 
