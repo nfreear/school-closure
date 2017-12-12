@@ -42,7 +42,7 @@ function badge_svg( $name = 'Middleton Primary', $stat = 'closed', $time = null 
 
     return <<<EOT
 <svg
-  lang="en"
+  xml:lang="en"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" width="174" height="20"
   >
