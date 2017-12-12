@@ -20,11 +20,10 @@ $results = [];
 
 try {
     for ($page = MIN_PAGE; $page <= MAX_PAGE; $page++) {
-        print_r( "$page. " );
 
         $scrape_url = strtr(getenv( 'SCX_SCRAPE_URL' ), [ '{PAGE}' => $page ]);
 
-        var_dump( $scrape_url );
+        print_r( "$page. $scrape_url\n" );
 
         // GET the document.
         $http_context = stream_context_create([ 'http' => [
@@ -68,6 +67,8 @@ $data = [
     'home_url' => getenv( 'SCX_LINK_URL' ),
     'legal'    => LEGAL,
     'user_agent' => AGENT,
+    'pages'   => MAX_PAGE,
+    'count'   => count( $results ),
     'schools' => $results,
 ];
 

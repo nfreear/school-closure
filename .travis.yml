@@ -1,0 +1,18 @@
+# Scraper ~ PHP + Node.JS
+
+language: php
+
+php: 7.0
+
+git:
+  depth: 8
+
+install: composer install && composer npm-install
+
+before_script: composer copy-env && composer mk-cache
+
+script: composer test && composer cron
+
+after_script: git status
+
+# end.

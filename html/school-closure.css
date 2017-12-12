@@ -1,0 +1,23 @@
+
+.school-closure-js a {
+    background: #fff;
+    color: #333;
+    font: 1.05rem sans-serif;
+    text-decoration: underline;
+}
+
+.school-closure-js i {
+    x-display: inline-block;
+    font-style: normal;
+    x-padding-right: .5em;
+    x-text-decoration: underline;
+}
+
+.school-closure-js b {
+    color: #e05d44; /* red */
+    font-size: 1.1em;
+}
+
+.school-closure-js.open b {
+    color: #4c1; /* green */
+}
