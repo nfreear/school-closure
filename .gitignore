@@ -3,6 +3,7 @@ cache/
 vendor/
 .env
 .env.php
+.htaccess
 composer.lock
 *BAK*
 

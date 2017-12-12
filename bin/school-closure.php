@@ -14,10 +14,7 @@ require_once __DIR__ . '/../.env.php';
 use duzun\hQuery;
 
 // Set the cache path - must be a writable folder
-# hQuery::$cache_path =  "/path/to/cache";
 hQuery::$cache_path = getenv( 'SCX_CACHE_DIR' );
-
-# var_dump(getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ));
 
 $results = [];
 
