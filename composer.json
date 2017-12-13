@@ -23,7 +23,9 @@
         "npm-install": "npm i semistandard@^11 csslint@^1.0",
         "copy-env": "cp -n .env.DIST.php .env.php",
         "mk-cache": "mkdir cache",
-        "cron": "bin/school-closure.php",
+        "build": "bin/school-closure.php",
+        "cron": "bin/cron",
+        "cron-list": "crontab -l | grep school-clo",
         "test": [
             "parallel-lint --exclude vendor .",
             "node_modules/.bin/semistandard"

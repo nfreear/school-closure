@@ -18,6 +18,7 @@ use duzun\hQuery;
 hQuery::$cache_path = getenv( 'SCX_CACHE_DIR' );
 
 $results = [];
+$count_open = 0;
 
 try {
     for ($page = MIN_PAGE; $page <= MAX_PAGE; $page++) {
@@ -43,12 +44,15 @@ try {
             foreach ($headings as $idx => $heading) {
                 preg_match(getenv( 'SCX_ITEM_REGEX' ), $heading->text(), $matches );
 
+                $status = strtolower($matches[ 'status' ]);
                 $results[] = [
                     'name'   => _clean($matches[ 'school' ]),
                     'abbr'   => _abbreviate($matches[ 'school' ]),
-                    'status' => strtolower($matches[ 'status' ]),
+                    'status' => $status,
                     'page'   => (int) $page,
                 ];
+
+                $count_open += (int) ( 'open' === $status );
             }
         }
 
@@ -58,6 +62,7 @@ try {
     print_r( $ex->getMessage() );
 }
 
+$total = count( $results );
 $data = [
     'lang'     => LANG,
     'build_time' => date( 'c' ),
@@ -66,8 +71,12 @@ $data = [
     'legal'    => LEGAL,
     'user_agent' => AGENT,
     'sleep_secs' => (float) getenv( 'SCX_SLEEP_FLOAT' ),
-    'pages'   => (int) MAX_PAGE,
-    'count'   => count( $results ),
+    'count'  => [
+        'total' => $total,
+        'open'  => $count_open,
+        'percent' => ( 100 * $count_open / $total ) . '%',
+        'pages' => (int) MAX_PAGE,
+    ],
     'schools' => $results,
 ];
 

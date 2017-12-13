@@ -15,7 +15,7 @@ Also, a `badge-svg` PHP script & a `school-closure` Javascript.
 ```sh
 composer install && composer npm-install
 composer copy-env
-composer cron
+composer build
 composer test
 composer serve
   # And browse to ...
@@ -40,7 +40,7 @@ Example [crontab][] (assumes the server is configured for your local time):
 ```sh
 # crontab -l
 # min hr  dom mon day command
-*/15  6-9 *   *   *   cd /path/to/school-closure; /usr/local/bin/composer cron >/dev/null 2>&1
+*/15  6-9 *   *   *   /path/to/school-closure/bin/cron >/dev/null 2>&1
 ```
 
 ## Legal
