@@ -25,7 +25,7 @@ class CliUtilities {
 
     /**
      * Create a HTTP context.
-     * @return resource ??
+     * @return resource  A stream context.
      */
     public static function createHttpContext() {
         return stream_context_create([
@@ -80,7 +80,7 @@ class CliUtilities {
      * Write JSON to a file.
      * @param string       $filename
      * @param object|array $data
-     * @return int         Bytes written.
+     * @return int|bool    Bytes written, or FALSE.
      */
     public static function fileWriteJson( $filename, $data ) {
         return file_put_contents( $filename, json_encode( $data, JSON_PRETTY_PRINT ));

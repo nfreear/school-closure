@@ -70,7 +70,7 @@ $data = [
     'count'  => [
         'total' => $total,
         'open'  => $count_open,
-        'percent' => ( 100 * $count_open / $total ) . '%',
+        'percent' => Cli::percent( $count_open / $total ),
         'pages' => (int) MAX_PAGE,
     ],
     'schools' => $results,
