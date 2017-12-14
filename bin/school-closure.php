@@ -12,6 +12,7 @@
 // Environment / configuration -- this will go in a ".env" file !!
 require_once __DIR__ . '/../.env.php';
 
+use Nfreear\SchoolClosure\CliUtilities as Cli;
 use duzun\hQuery;
 
 // Set the cache path - must be a writable folder.
@@ -28,16 +29,11 @@ try {
         print_r( "$page. $scrape_url\n" );
 
         // GET the document.
-        $http_context = stream_context_create([ 'http' => [
-            'method' => 'GET', 'user_agent' => AGENT, 'proxy' => PROXY, 'header' => [
-                'X-sleep-seconds: ' . getenv( 'SCX_SLEEP_FLOAT' ),
-        ] ] ]);
-
-        $htmldoc = hQuery::fromFile( $scrape_url, false, $http_context );
+        $htmldoc = hQuery::fromFile( $scrape_url, false, Cli::createHttpContext() );
 
         $headings = $htmldoc->find(getenv( 'SCX_LOOP_SELECTOR' ));
 
-        _verbose([ count( $headings ), $htmldoc->size, $htmldoc->charset ]);
+        Cli::verbose([ count( $headings ), $htmldoc->size, $htmldoc->charset ]);
 
         if ($headings) {
 
@@ -46,8 +42,8 @@ try {
 
                 $status = strtolower($matches[ 'status' ]);
                 $results[] = [
-                    'name'   => _clean($matches[ 'school' ]),
-                    'abbr'   => _abbreviate($matches[ 'school' ]),
+                    'name'   => Cli::clean($matches[ 'school' ]),
+                    'abbr'   => Cli::abbreviate($matches[ 'school' ]),
                     'status' => $status,
                     'page'   => (int) $page,
                 ];
@@ -56,7 +52,7 @@ try {
             }
         }
 
-        usleep( getenv( 'SCX_SLEEP_FLOAT' ) * 1000000 );
+        Cli::floatSleep();
     }
 } catch (\Exception $ex) {
     print_r( $ex->getMessage() );
@@ -65,7 +61,7 @@ try {
 $total = count( $results );
 $data = [
     'lang'     => LANG,
-    'build_time' => date( 'c' ),
+    'build_time' => gmdate( 'c' ),
     'location' => getenv( 'SCX_LOCATION' ),
     'home_url' => getenv( 'SCX_LINK_URL' ),
     'legal'    => LEGAL,
@@ -80,27 +76,8 @@ $data = [
     'schools' => $results,
 ];
 
-$bytes = file_put_contents( INDEX_JSON, json_encode( $data, JSON_PRETTY_PRINT ));
+$bytes = Cli::fileWriteJson( INDEX_JSON, $data );
 
 echo "\nindex.json. Bytes written: $bytes\n";
-
-
-// ------------------------------------------------------------
-
-// https://stackoverflow.com/questions/9706429/get-first-letter-of-each-word
-function _abbreviate( $text ) {
-    $text = trim(str_replace( 'The', '', _clean( $text )));
-    $words = explode(' ', $text); // "Community College District"
-    $acronym = '';
-
-    foreach ($words as $wd) {
-        $acronym .= $wd[ 0 ];
-    }
-    return count( $words ) > 1 ? $acronym : $text;
-}
-
-function _clean( $text ) {
-    return preg_replace( '/ {2,}/', ' ', trim( $text ));
-}
 
 // End.

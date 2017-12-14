@@ -1,12 +1,13 @@
 <?php
-
-if ('cli' !== php_sapi_name()) {
-    ob_end_clean(); header('HTTP/1.1 404'); die('Not found');
-}
-
 /**
  * Environment / configuration -- this will go in a ".env" file !!
  */
+
+require_once __DIR__ . '/src/CliUtilities.php';
+
+use Nfreear\SchoolClosure\CliUtilities as Cli;
+
+Cli::abortIfNotCli();
 
 // IMPORTANT: Play nice!
 putenv( 'SCX_SLEEP_FLOAT=4.0' );
@@ -30,13 +31,7 @@ define( 'MAX_PAGE', getenv( 'SCX_MAX_PAGE' ));
 define( 'LANG', 'en-GB' );
 define( 'VERBOSE', $argv[ $argc - 1] === '-vvv' );
 
-_verbose([ getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ) ]);
-
-function _verbose( $obj ) {
-    if ( VERBOSE ) {
-        echo json_encode( $obj, JSON_PRETTY_PRINT ) . "\n";
-    }
-}
+Cli::verbose([ getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ) ]);
 
 // Either use commposer (or include this file):
 // include_once '/path/to/libs/hquery.php';
