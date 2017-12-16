@@ -9,16 +9,29 @@
 
 class CliUtilities {
 
+    protected static function ifAnyCli() {
+        return 'cli' === php_sapi_name() || (getenv( 'SHELL' ) && getenv( 'MAILTO' ));
+    }
+
     public static function abortIfNotCli() {
-        if ( 'cli' !== php_sapi_name() ) {
+        /* header( 'X-SAPI: ' . php_sapi_name() );
+        header( 'X-getenv-sh: ' . getenv( 'SHELL' ));
+        header( 'X-env-sh: ' . $_ENV[ 'SHELL' ]); */
+
+        if ( ! self::ifAnyCli() ) {
             ob_end_clean();
-            header('HTTP/1.1 404');
-            die('Not found');
+            header( 'HTTP/1.1 404' );
+            header( 'X-sapi: ' . php_sapi_name() );
+            die( 'Not found (404.9)' );
         }
     }
 
+    public static function isVerbose() {
+        return $argv[ $argc - 1 ] === '-vvv' || filter_input( INPUT_GET, '-vvv' );
+    }
+
     public static function verbose( $obj ) {
-        if ( VERBOSE ) {
+        if ( self::isVerbose() ) {
             echo json_encode( $obj, JSON_PRETTY_PRINT ) . "\n";
         }
     }

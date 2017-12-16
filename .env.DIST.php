@@ -29,7 +29,6 @@ define( 'INDEX_JSON', __DIR__ . '/index.json' );
 define( 'MIN_PAGE', getenv( 'SCX_MIN_PAGE' ));
 define( 'MAX_PAGE', getenv( 'SCX_MAX_PAGE' ));
 define( 'LANG', 'en-GB' );
-define( 'VERBOSE', $argv[ $argc - 1] === '-vvv' );
 
 Cli::verbose([ getenv( 'SCX_SCRAPE_URL' ), getenv( 'SCX_LOOP_SELECTOR' ), getenv( 'SCX_ITEM_REGEX' ) ]);
 
