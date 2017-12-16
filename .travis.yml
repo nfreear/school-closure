@@ -15,7 +15,8 @@ script:
   - composer validate
   - composer test
   - composer build
+  - composer version.json
 
-after_script: git status && cat index.json
+after_script: git status && cat index.json && cat version.json
 
 # end.

@@ -30,6 +30,9 @@
             "parallel-lint --exclude vendor .",
             "node_modules/.bin/semistandard"
         ],
+        "version.json": [
+          "(printf '{ \"vv\": \"'`git describe --long --dirty`'\", \"tt\": \"'; date | tr -d '\n'; printf '\" }') > version.json"
+        ],
         "serve": "php -S localhost:8000"
     },
     "keywords": [ "scraper", "school", "snow", "weather", "hQuery" ],

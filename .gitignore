@@ -9,7 +9,10 @@ composer.lock
 package-lock.json
 *BAK*
 *.svg
+env*
+*test.php
 
 /index.json
+version.json
 
 # End.
