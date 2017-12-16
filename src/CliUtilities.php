@@ -27,7 +27,8 @@ class CliUtilities {
     }
 
     public static function isVerbose() {
-        return $argv[ $argc - 1 ] === '-vvv' || filter_input( INPUT_GET, '-vvv' );
+        return ( isset( $argv ) && $argv[ $argc - 1 ] === '-vvv' )
+            || filter_input( INPUT_GET, '-vvv' );
     }
 
     public static function verbose( $obj ) {

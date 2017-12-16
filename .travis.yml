@@ -17,6 +17,10 @@ script:
   - composer build
   - composer version.json
 
-after_script: git status && cat index.json && cat version.json
+after_script:
+  - git status
+  - cat index.json && cat version.json
+  # Server environment.
+  - php -r 'print_r([ $_SERVER, php_sapi_name() ]);'
 
 # end.
