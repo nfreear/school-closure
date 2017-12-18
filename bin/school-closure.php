@@ -62,6 +62,7 @@ $total = count( $results );
 $data = [
     'lang'     => LANG,
     'build_time' => gmdate( 'c' ),
+    'remark'   => getenv( 'SCX_REMARK' ),
     'location' => getenv( 'SCX_LOCATION' ),
     'home_url' => getenv( 'SCX_LINK_URL' ),
     'legal'    => LEGAL,

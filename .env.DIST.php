@@ -20,6 +20,7 @@ putenv( 'SCX_MAX_PAGE=2' );  // '..=16';
 putenv( 'SCX_LOOP_SELECTOR=.content.right article h3' );
 putenv( 'SCX_ITEM_REGEX=' . '/(?P<school>[\w, \']+) +(?P<status>OPEN|CLOSED)/i' );
 putenv( 'SCX_CACHE_DIR=' . __DIR__ . '/cache' );  // /Path/to/school-closure/cache
+putenv( 'SCX_REMARK=Hello world!' );
 
 // Other configuration.
 define( 'PROXY', getenv( 'http_proxy' ));

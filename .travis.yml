@@ -7,7 +7,9 @@ php: 7.0
 git:
   depth: 8
 
-install: composer install && composer npm-install
+install:
+  - composer install
+  - composer npm-install
 
 before_script: composer copy-env && composer mk-cache
 
@@ -19,8 +21,9 @@ script:
 
 after_script:
   - git status
-  - cat index.json && cat version.json
-  # Server environment.
-  - php -r 'print_r([ $_SERVER, php_sapi_name() ]);'
+  - cat index.json
+  - cat version.json
+  # Server environment (via PHP).
+  #- php -r 'print_r([ $_SERVER, php_sapi_name() ]);'
 
 # end.

@@ -1,7 +1,7 @@
 <?php namespace Nfreear\SchoolClosure;
 
 /**
- * CLI utilities class.
+ * Commandline (CLI) utilities class.
  *
  * @copyright © Nick Freear, 13-December-2017.
  * @license   MIT
@@ -9,15 +9,16 @@
 
 class CliUtilities {
 
+    /**
+     * @return bool  Is this a commandline request (cPanel or conventional CLI)?
+     */
     protected static function ifAnyCli() {
         return 'cli' === php_sapi_name() || (getenv( 'SHELL' ) && getenv( 'MAILTO' ));
     }
 
+    /** Security - kill WEB-based requests!
+    */
     public static function abortIfNotCli() {
-        /* header( 'X-SAPI: ' . php_sapi_name() );
-        header( 'X-getenv-sh: ' . getenv( 'SHELL' ));
-        header( 'X-env-sh: ' . $_ENV[ 'SHELL' ]); */
-
         if ( ! self::ifAnyCli() ) {
             ob_end_clean();
             header( 'HTTP/1.1 404' );
@@ -38,8 +39,7 @@ class CliUtilities {
     }
 
     /**
-     * Create a HTTP context.
-     * @return resource  A stream context.
+     * @return resource  Return a HTTP stream context.
      */
     public static function createHttpContext() {
         return stream_context_create([
@@ -91,10 +91,9 @@ class CliUtilities {
     }
 
     /**
-     * Write JSON to a file.
-     * @param string       $filename
+     * @param string       $filename  Write JSON data to this file.
      * @param object|array $data
-     * @return int|bool    Bytes written, or FALSE.
+     * @return int|bool    Bytes written, or FALSE on error.
      */
     public static function fileWriteJson( $filename, $data ) {
         return file_put_contents( $filename, json_encode( $data, JSON_PRETTY_PRINT ));
