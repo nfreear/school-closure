@@ -38,7 +38,7 @@ echo badge_svg( 'Not found', '404' );
 function badge_svg( $name = 'Middleton Primary', $stat = 'closed', $time = null ) {
     header( 'Content-Type: image/svg+xml; charset=utf-8' );
 
-    $color = 'closed' == $stat ? CL_RED : 'open' == $stat ? CL_GREEN : CL_GREY;
+    $color = 'closed' == $stat ? CL_RED : ( 'open' == $stat ? CL_GREEN : CL_GREY );
 
     return <<<EOT
 <svg
