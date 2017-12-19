@@ -68,6 +68,7 @@ $data = [
     'legal'    => LEGAL,
     'user_agent' => AGENT,
     'sleep_secs' => (float) getenv( 'SCX_SLEEP_FLOAT' ),
+    'crontab_list' => Cli::getCronList(),
     'count'  => [
         'total' => $total,
         'open'  => $count_open,

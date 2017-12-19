@@ -9,6 +9,10 @@
 
 class CliUtilities {
 
+    const CRON_LIST_CMD = 'crontab -l | grep "%s"';
+    const CRON_SECURE_REGEX = '/\/(var|home|Users)\/[\w]+/';
+    const CRON_COMMENT = '# min hr  dom mon day command.';
+
     /**
      * @return bool  Is this a commandline request (cPanel or conventional CLI)?
      */
@@ -97,6 +101,24 @@ class CliUtilities {
      */
     public static function fileWriteJson( $filename, $data ) {
         return file_put_contents( $filename, json_encode( $data, JSON_PRETTY_PRINT ));
+    }
+
+    /**
+     * @return array  Return "cron -l" output, securely. (19 Dec.)
+     */
+    public static function getCronList( $grep = 'school-closure/b', $secure_replace = null ) {
+        $secure_replace = $secure_replace ? $secure_replace : self::CRON_SECURE_REGEX;
+        $command = sprintf( self::CRON_LIST_CMD, $grep );  // 'crontab -l | grep ' . $keyword;
+
+        $output = $return_var = null;
+        $result[] = self::CRON_COMMENT;
+
+        $last_line = exec( $command, $output, $return_var );
+
+        foreach ($output as $idx => $line) {
+            $result[] = preg_replace( $secure_replace, '[command]', $line );
+        }
+        return $result;
     }
 }
 
