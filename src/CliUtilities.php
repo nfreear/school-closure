@@ -120,6 +120,20 @@ class CliUtilities {
         }
         return $result;
     }
+
+    public static function initExampleSchool() {
+        $result = [];
+        if ((int) getenv( 'SCX_EXAMPLE' )) {
+            $result[] = [
+                'name' => 'An Example School',
+                'abbr' => 'EX_0',
+                'status' => 'closed',
+                'page' => 0,
+                'is_test' => true,
+            ];
+        }
+        return $result;
+    }
 }
 
 // End.

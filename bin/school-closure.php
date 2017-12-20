@@ -18,7 +18,7 @@ use duzun\hQuery;
 // Set the cache path - must be a writable folder.
 hQuery::$cache_path = getenv( 'SCX_CACHE_DIR' );
 
-$results = [];
+$results = Cli::initExampleSchool();
 $count_open = 0;
 
 try {
